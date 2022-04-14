@@ -35,9 +35,11 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: prototype-ingress
+  name: gin
   annotations:
     kubernetes.io/ingress.class: nginx
+	 external-dns.alpha.kubernetes.io/set-identifier: gin-analytical-platform-poc-green
+	 external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:
   - hosts:
