@@ -11,7 +11,7 @@ RUN apk update; apk add git # Required for go 1.18 vcs stamping
 #Specify the file name after compilation. You can use the default file name without setting. The last step is to execute the file name
 RUN go build -o gin_docker .
 EXPOSE 8080
-RUN chown -R appuser:appgroup /app
+RUN chown -R appuser:appgroup $GOPATH/src/
 USER 1000
 #This is consistent with the compiled file name
 ENTRYPOINT  ["./gin_docker"]
