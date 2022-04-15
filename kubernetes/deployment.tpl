@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: analytical-platform-external-tools
+  namespace: analytical-platform-poc
 spec:
   replicas: 3
   selector:
@@ -22,6 +23,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: analytical-platform-external-tool
+  namespace: analytical-platform-poc
   labels:
     app: gin
 spec:
@@ -32,14 +34,14 @@ spec:
   selector:
     app: gin
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: gin
   annotations:
     kubernetes.io/ingress.class: nginx
-	 external-dns.alpha.kubernetes.io/set-identifier: gin-analytical-platform-poc-green
-	 external-dns.alpha.kubernetes.io/aws-weight: "100"
+    external-dns.alpha.kubernetes.io/set-identifier: gin-analytical-platform-poc-green
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:
   - hosts:
